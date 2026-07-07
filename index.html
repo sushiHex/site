@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ken Faiman — Technical Artist &amp; Applied-AI Engineer</title>
+<meta name="description" content="Ken Faiman — Character &amp; Simulation Technical Artist and Applied-AI Engineer. 25 years of feature-film and AAA-game craft; now building applied and agentic AI tooling.">
+<meta property="og:title" content="Ken Faiman — Technical Artist &amp; Applied-AI Engineer">
+<meta property="og:description" content="25 years of character, cloth, hair &amp; simulation craft across film and games — now building applied &amp; agentic AI.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0c0d11; --bg2:#131520; --card:#161826; --ink:#f2f0ea; --muted:#a4a7b8;
+    --line:#262a3d; --accent:#e8a44c; --accent2:#7db3ff;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#faf9f6; --bg2:#f1efe9; --card:#ffffff; --ink:#1a1c22; --muted:#5b6070;
+           --line:#e4e1d8; --accent:#c9791b; --accent2:#2f6bd0; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  /* hero */
+  header.hero{
+    padding:88px 0 56px;
+    background:radial-gradient(1200px 500px at 20% -10%, var(--bg2), var(--bg) 70%);
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:600;margin:0 0 14px}
+  h1{font-size:clamp(38px,7vw,68px);line-height:1.02;margin:0 0 16px;font-weight:800;letter-spacing:-.02em}
+  .tagline{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:640px;margin:0 0 10px}
+  .loc{font-size:14px;color:var(--muted);margin:0 0 28px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;
+    text-decoration:none;font-weight:600;font-size:14px;border:1px solid var(--line);
+    background:var(--card);transition:transform .12s ease,border-color .12s ease;
+  }
+  .btn:hover{transform:translateY(-1px);border-color:var(--accent)}
+  .btn.primary{background:var(--accent);color:#1a1205;border-color:transparent}
+  .btn.primary:hover{border-color:transparent}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 28px;font-weight:700}
+
+  /* reels */
+  .reels{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  @media (max-width:760px){.reels{grid-template-columns:1fr}}
+  .reel h3{margin:0 0 4px;font-size:19px}
+  .reel p{margin:0 0 14px;color:var(--muted);font-size:14px}
+  .frame{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--line)}
+  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+  /* bio */
+  .bio{font-size:clamp(17px,2.1vw,20px);line-height:1.7;max-width:760px}
+  .bio strong{color:var(--ink)}
+
+  /* highlights */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media (max-width:640px){.grid{grid-template-columns:1fr}}
+  .cardx{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+  .cardx .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;font-weight:700}
+  .cardx p{margin:0;color:var(--muted);font-size:15px}
+  .cardx p b{color:var(--ink);font-weight:600}
+
+  /* links row */
+  .links{display:flex;flex-wrap:wrap;gap:12px}
+
+  footer{padding:44px 0 60px;color:var(--muted);font-size:14px}
+  footer a{color:var(--accent2);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .sep{opacity:.4;margin:0 10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Ken Faiman</p>
+    <h1>Technical Artist &amp;<br>Applied-AI Engineer</h1>
+    <p class="tagline">Twenty-five years shipping character, cloth, hair &amp; simulation craft across feature film and AAA games — now building applied and agentic AI tooling.</p>
+    <p class="loc">Greater Los Angeles / Orange County, CA · Remote-US</p>
+    <div class="cta">
+      <a class="btn primary" href="#reels">▶ Watch the reels</a>
+      <a class="btn" href="resume-technical-art.pdf">Résumé — Technical Art</a>
+      <a class="btn" href="resume-ai-engineering.pdf">Résumé — AI Engineering</a>
+      <a class="btn" href="https://www.linkedin.com/in/kfaiman">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section id="reels">
+  <div class="wrap">
+    <h2>Demo Reels</h2>
+    <div class="reels">
+      <div class="reel">
+        <h3>Blizzard Cinematics</h3>
+        <p>Character &amp; simulation craft — cloth, hair, skin.</p>
+        <div class="frame"><iframe src="https://player.vimeo.com/video/1207493855?title=0&amp;byline=0&amp;portrait=0" allow="fullscreen; picture-in-picture" allowfullscreen title="Ken Faiman — Blizzard Cinematics Reel"></iframe></div>
+      </div>
+      <div class="reel">
+        <h3>Feature-Film VFX</h3>
+        <p>DreamWorks features &amp; the Matrix Universal Capture system.</p>
+        <div class="frame"><iframe src="https://player.vimeo.com/video/72638736?title=0&amp;byline=0&amp;portrait=0" allow="fullscreen; picture-in-picture" allowfullscreen title="Ken Faiman — Feature-Film VFX Reel"></iframe></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p class="bio">
+      For 25 years I've built the systems behind believable digital characters — facial work on the
+      <strong>Matrix Universal Capture</strong> system, hero-character cloth, hair &amp; skin across eight
+      <strong>DreamWorks</strong> features, simulation on <strong>Blizzard</strong> cinematics, and real-time
+      avatar systems at <strong>Meta</strong> (Avatars &amp; Horizon). Today I bring that same systems-and-quality
+      instinct to applied AI: agent orchestration, retrieval, and self-improving evaluation harnesses — including
+      <strong>mainframe-mcp</strong>, my open-source MCP + RAG server.
+    </p>
+  </div>
+</section>
+
+<section id="highlights">
+  <div class="wrap">
+    <h2>Selected Work</h2>
+    <div class="grid">
+      <div class="cardx"><p class="k">Feature Film</p><p><b>Matrix Universal Capture</b> (SIGGRAPH 2004, "Making of The Superpunch") · hero-character cloth/hair/skin across 8 DreamWorks features.</p></div>
+      <div class="cardx"><p class="k">AAA Games</p><p><b>Blizzard cinematics</b> — World of Warcraft, Overwatch, Diablo, Hearthstone: character &amp; simulation craft.</p></div>
+      <div class="cardx"><p class="k">Real-Time</p><p><b>Meta Avatars &amp; Horizon</b> — real-time avatar cloth/hair simulation and character systems.</p></div>
+      <div class="cardx"><p class="k">Applied AI</p><p><b>mainframe-mcp</b> — open-source MCP + RAG server with a self-improving evaluation harness. Diffusion (FLUX-LoRA) training &amp; eval.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="links">
+  <div class="wrap">
+    <h2>Links</h2>
+    <div class="links">
+      <a class="btn" href="https://github.com/sushiHex">GitHub — mainframe-mcp</a>
+      <a class="btn" href="https://www.imdb.com/name/nm1363419">IMDb — nm1363419</a>
+      <a class="btn" href="https://www.linkedin.com/in/kfaiman">LinkedIn</a>
+      <a class="btn" href="mailto:kfaiman@gmail.com">kfaiman@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Ken Faiman · Technical Artist &amp; Applied-AI Engineer
+    <span class="sep">·</span> Greater Los Angeles / Orange County
+    <span class="sep">·</span> <a href="mailto:kfaiman@gmail.com">Email</a>
+    <span class="sep">·</span> <a href="https://www.linkedin.com/in/kfaiman">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
