@@ -147,6 +147,13 @@
   footer{padding:52px 0 72px;color:var(--muted)}
   footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;font-family:var(--mono);font-size:12.5px}
   footer .fr{display:flex;gap:20px;flex-wrap:wrap}
+  @media (prefers-reduced-motion: no-preference){
+    .rv{opacity:0;transform:translateY(26px);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);transition-delay:var(--rv-d,0ms)}
+    .rv.in{opacity:1;transform:none}
+  }
+  @media print{
+    .rv{opacity:1 !important;transform:none !important}
+  }
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
     *{transition:none !important}
@@ -301,6 +308,39 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+
+  // Per-section: header reveals first, then cards/reels/rows cascade in.
+  var all = [];
+  document.querySelectorAll('section.blk').forEach(function(sec){
+    var items = [sec.querySelector('.sec-head')]
+      .concat([].slice.call(sec.querySelectorAll('.reels, .grid, .linklist, .about-grid > *, .note')))
+      .filter(Boolean);
+    items.forEach(function(el, i){
+      el.classList.add('rv');
+      el.style.setProperty('--rv-d', Math.min(i * 110, 330) + 'ms');
+      all.push(el);
+    });
+  });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {rootMargin:'0px 0px -10% 0px', threshold:0.05});
+  all.forEach(function(el){ io.observe(el); });
+
+  // Safety: reveal anything already in view that the observer missed; leave off-screen items to reveal on scroll.
+  setTimeout(function(){
+    all.forEach(function(el){
+      if(!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight){ el.classList.add('in'); io.unobserve(el); }
+    });
+  }, 2500);
+})();
+</script>
 
 </body>
 </html>
