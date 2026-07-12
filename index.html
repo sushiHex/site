@@ -8,6 +8,7 @@
 <meta property="og:title" content="Ken Faiman | Technical Artist &amp; Applied-AI Engineer">
 <meta property="og:description" content="25 years of character, cloth, hair &amp; simulation craft across film and games, now building agent systems and the evaluation harnesses that keep them honest.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://faiman.com/ken-faiman.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -68,6 +69,17 @@
 
   /* ---- hero ---- */
   .hero{padding:112px 0 96px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center}
+  .portrait{
+    width:min(320px,30vw);height:auto;aspect-ratio:4/5;object-fit:cover;display:block;
+    border-radius:14px;border:1px solid var(--line);
+    box-shadow:0 18px 44px -22px rgba(0,0,0,.28);
+  }
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;gap:34px}
+    .hero-photo{order:-1}
+    .portrait{width:148px;aspect-ratio:1;border-radius:12px}
+  }
   .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--accent-ink);margin:0 0 26px;display:flex;align-items:center;gap:12px}
   .kicker::before{content:"";width:26px;height:1px;background:var(--accent)}
   h1{
@@ -179,24 +191,31 @@
 
 <header class="hero">
   <div class="wrap">
-    <p class="kicker">Character &amp; Simulation TA · Applied-AI Engineer</p>
-    <h1>Believable characters, honest systems.</h1>
-    <p class="lede">For 25 years I've rigged and simulated believable digital characters: faces, bodies, cloth, and hair for feature film and AAA games. Today I build applied-AI agents and the evaluation systems that keep them reliable.</p>
-    <div class="impact">
-      <span class="chip"><b>Agent systems</b> in production</span>
-      <span class="chip"><b>Evaluation</b> harnesses &amp; eval-gating</span>
-      <span class="chip"><b>Retrieval</b> / RAG pipelines</span>
-      <span class="chip"><b>Physics-ML</b> data &amp; rigging</span>
-    </div>
-    <div class="meta-row">
-      <span><i class="dot"></i>Greater Los Angeles / Orange County, CA</span>
-      <span>Remote-US</span>
-      <span>Open to AI/ML engineering &amp; senior technical-art roles</span>
-    </div>
-    <div class="cta">
-      <a class="btn" href="resume-ai-engineering.pdf">AI Engineering Résumé <span class="arw">→</span></a>
-      <a class="btn" href="resume-technical-art.pdf">Technical Art Résumé <span class="arw">→</span></a>
-      <a class="btn" href="#reels"><span class="arw">▶</span> Watch the reels</a>
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">Character &amp; Simulation TA · Applied-AI Engineer</p>
+        <h1>Believable characters, honest systems.</h1>
+        <p class="lede">For 25 years I've rigged and simulated believable digital characters: faces, bodies, cloth, and hair for feature film and AAA games. Today I build applied-AI agents and the evaluation systems that keep them reliable.</p>
+        <div class="impact">
+          <span class="chip"><b>Agent systems</b> in production</span>
+          <span class="chip"><b>Evaluation</b> harnesses &amp; eval-gating</span>
+          <span class="chip"><b>Retrieval</b> / RAG pipelines</span>
+          <span class="chip"><b>Physics-ML</b> data &amp; rigging</span>
+        </div>
+        <div class="meta-row">
+          <span><i class="dot"></i>Greater Los Angeles / Orange County, CA</span>
+          <span>Remote-US</span>
+          <span>Open to AI/ML engineering &amp; senior technical-art roles</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="resume-ai-engineering.pdf">AI Engineering Résumé <span class="arw">→</span></a>
+          <a class="btn" href="resume-technical-art.pdf">Technical Art Résumé <span class="arw">→</span></a>
+          <a class="btn" href="#reels"><span class="arw">▶</span> Watch the reels</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img class="portrait" src="ken-faiman.jpg" alt="Ken Faiman" width="800" height="1000" fetchpriority="high">
+      </div>
     </div>
   </div>
 </header>
