@@ -1,0 +1,80 @@
+/* faiman.com /writing/ — shares the site's tokens & type; adds article + figure styles */
+:root{
+  --bg:#f6f5f1; --bg-panel:#efece4; --ink:#16171a; --ink-soft:#3a3c42;
+  --muted:#7c7e86; --line:#dedbd0; --line-soft:#e8e5db;
+  --accent:oklch(0.58 0.13 155); --accent-ink:oklch(0.44 0.11 155);
+  --sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0e0f11; --bg-panel:#16181c; --ink:#f3f2ed; --ink-soft:#c9cad0;
+    --muted:#8b8e98; --line:#26282e; --line-soft:#1d1f24;
+    --accent:oklch(0.72 0.14 155); --accent-ink:oklch(0.78 0.13 155);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{color:var(--ink)}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+@media (max-width:680px){.wrap{padding:0 22px}}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:20;
+  background:color-mix(in oklab,var(--bg) 82%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.mark{font-weight:700;letter-spacing:-.01em;font-size:15px;color:var(--ink)}
+.mark span{color:var(--muted);font-weight:500}
+.back{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--muted)}
+.back:hover{color:var(--ink)}
+
+/* article */
+.article{max-width:768px;margin:0 auto;padding:60px 0 32px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--accent-ink);
+  margin:0 0 20px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
+.article h1{font-size:clamp(34px,5.4vw,56px);line-height:1.02;letter-spacing:-.03em;
+  font-weight:600;margin:0 0 20px;max-width:18ch;text-wrap:balance}
+.dek{font-size:clamp(18px,2vw,21px);line-height:1.5;color:var(--ink-soft);max-width:58ch;margin:0 0 24px;text-wrap:pretty}
+.metachips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 8px}
+.chip{display:inline-flex;align-items:center;padding:6px 13px;border:1px solid var(--line);
+  border-radius:999px;background:var(--bg-panel);font-family:var(--mono);font-size:12px;color:var(--muted)}
+.chip.on{color:var(--accent-ink);border-color:color-mix(in oklab,var(--accent) 45%,var(--line))}
+
+.article-body{max-width:720px;margin:0 auto}
+.lead{font-size:19px;line-height:1.6;color:var(--ink);margin:40px 0 8px;font-weight:500;letter-spacing:-.01em}
+.article-body h2{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent-ink);margin:52px 0 6px;font-weight:500}
+.article-body h3{font-size:21px;font-weight:600;letter-spacing:-.015em;margin:30px 0 2px}
+.article-body p{font-size:16.5px;line-height:1.72;color:var(--ink-soft);margin:12px 0;max-width:66ch}
+.article-body strong{color:var(--ink);font-weight:600}
+.article-body em{font-style:italic}
+.mono{font-family:var(--mono)}
+.win{font-family:var(--mono);font-weight:500;color:var(--accent-ink)}
+code{font-family:var(--mono);font-size:.9em;background:var(--bg-panel);border:1px solid var(--line-soft);
+  border-radius:5px;padding:1px 6px;color:var(--ink)}
+
+/* figure: the dark diagram panel */
+figure{margin:34px 0 10px}
+.diagram{background:#0f1419;border:1px solid var(--line);border-radius:14px;padding:14px 12px;
+  overflow-x:auto;box-shadow:0 24px 60px -34px rgba(0,0,0,.5)}
+.diagram img{display:block;width:100%;min-width:640px;height:auto}
+figcaption{font-size:13.5px;line-height:1.55;color:var(--muted);margin:14px auto 0;max-width:62ch;text-align:center}
+
+.foot{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.foot a{color:var(--accent-ink)}
+.foot .kick{color:var(--ink)}
+
+@media (max-width:680px){
+  .article{padding:40px 0 24px}
+  .diagram{padding:8px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}

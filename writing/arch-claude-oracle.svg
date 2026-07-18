@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" role="img" aria-label="claude-oracle architecture: an Opus architect decomposes a question, parallel Haiku scout chains gather breadth, Sonnet compressors organize each chain in isolation, and a confidence-tagged briefing returns to your session.">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#66768a"/></marker>
+    <marker id="ahb" markerWidth="9" markerHeight="9" refX="7.5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#4da3ff"/></marker>
+    <style>
+      .bg{fill:#0f1419}
+      .z{fill:none;stroke:#2c3a4f}
+      .z-tab{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:1.3px;fill:#66768a}
+      .nrect{fill:#232e40;stroke:#2c3a4f;stroke-width:1}
+      .nrect.opus{stroke:#4da3ff;stroke-width:1.5}
+      .nrect.smith{fill:#182a2a;stroke:#4fd6c4;stroke-opacity:.55}
+      .nrect.brief{fill:#2a2616;stroke:#ffce54;stroke-opacity:.6}
+      .n-t{font-size:13.5px;font-weight:600;fill:#e6edf3;font-family:'Inter Tight',system-ui,Segoe UI,Roboto,sans-serif}
+      .n-s{font-size:10.5px;fill:#93a3b8;font-family:'JetBrains Mono',ui-monospace,Menlo,monospace}
+      .flow{stroke:#66768a;stroke-width:1.6;fill:none}
+      .flow.acc{stroke:#4da3ff;stroke-opacity:.9}
+      .elabel{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:10.5px;fill:#93a3b8}
+      .tier{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:10.5px;fill:#66768a}
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="660" rx="16"/>
+
+  <!-- OPUS architect -->
+  <rect class="nrect opus" x="380" y="34" width="240" height="62" rx="9"/>
+  <text class="n-t" x="500" y="60" text-anchor="middle">Your Opus session</text>
+  <text class="n-s" x="500" y="79" text-anchor="middle">Architect · full-context decomposition</text>
+  <text class="elabel" x="500" y="128" text-anchor="middle">1–8 chains · parallel · isolation enforced in Python</text>
+
+  <!-- chain zones -->
+  <rect class="z" x="48" y="150" width="428" height="330" rx="14"/>
+  <text class="z-tab" x="66" y="173">CHAIN 1</text>
+  <rect class="z" x="524" y="150" width="428" height="330" rx="14"/>
+  <text class="z-tab" x="542" y="173">CHAIN n …</text>
+
+  <!-- return: briefing -> opus, right margin (drawn behind) -->
+  <path class="flow acc" d="M 620 528 C 984 524 984 65 622 65" marker-end="url(#ahb)"/>
+  <text class="elabel" x="702" y="26">briefing returns to you</text>
+
+  <!-- Chain 1: Haiku Smiths (stacked) -> Sonnet Anderson -->
+  <rect class="nrect smith" x="119" y="221" width="288" height="58" rx="9" opacity="0.45"/>
+  <rect class="nrect smith" x="112" y="214" width="288" height="58" rx="9"/>
+  <text class="n-t" x="256" y="238" text-anchor="middle">10 Haiku &#8216;Smiths&#8217;</text>
+  <text class="n-s" x="256" y="256" text-anchor="middle">parallel scouts · Web + GitHub MCP</text>
+  <rect class="nrect" x="146" y="360" width="220" height="60" rx="9"/>
+  <text class="n-t" x="256" y="384" text-anchor="middle">Sonnet &#8216;Anderson&#8217;</text>
+  <text class="n-s" x="256" y="402" text-anchor="middle">organize · sees only this chain</text>
+  <path class="flow" d="M 256 272 L 256 358" marker-end="url(#ah)"/>
+
+  <!-- Chain n -->
+  <rect class="nrect smith" x="595" y="221" width="288" height="58" rx="9" opacity="0.45"/>
+  <rect class="nrect smith" x="588" y="214" width="288" height="58" rx="9"/>
+  <text class="n-t" x="732" y="238" text-anchor="middle">10 Haiku &#8216;Smiths&#8217;</text>
+  <text class="n-s" x="732" y="256" text-anchor="middle">same question, isolated firehose</text>
+  <rect class="nrect" x="622" y="360" width="220" height="60" rx="9"/>
+  <text class="n-t" x="732" y="384" text-anchor="middle">Sonnet &#8216;Anderson&#8217;</text>
+  <text class="n-s" x="732" y="402" text-anchor="middle">organize · isolated compressor</text>
+  <path class="flow" d="M 732 272 L 732 358" marker-end="url(#ah)"/>
+
+  <!-- fan-out from Opus -->
+  <path class="flow acc" d="M 500 96 C 420 150 300 172 256 212" marker-end="url(#ahb)"/>
+  <path class="flow acc" d="M 500 96 C 580 150 700 172 732 212" marker-end="url(#ahb)"/>
+
+  <!-- briefing -->
+  <rect class="nrect brief" x="380" y="520" width="240" height="60" rx="9"/>
+  <text class="n-t" x="500" y="544" text-anchor="middle">Structured briefing</text>
+  <text class="n-s" x="500" y="562" text-anchor="middle">confidence-tagged findings</text>
+  <path class="flow" d="M 256 420 C 256 482 360 502 396 524" marker-end="url(#ah)"/>
+  <path class="flow" d="M 732 420 C 732 482 640 502 604 524" marker-end="url(#ah)"/>
+
+  <!-- tier legend -->
+  <text class="tier" x="48" y="636">breadth = Haiku (cheap, parallel)      synthesis = Sonnet (judgment)      editorial = Opus (you)   ·   ~10× breadth at a fraction of Opus-only cost</text>
+</svg>

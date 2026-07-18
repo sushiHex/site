@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mainframe-mcp: a local GPU-RAG knowledge server | Ken Faiman</title>
+<meta name="description" content="Architecture note: how mainframe-mcp gives coding agents high-precision, reranked, grounded search over local markdown, with every retrieval decision settled by an in-repo eval harness.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="writing.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="mark" href="../index.html">Ken Faiman <span>/ TA + AI</span></a>
+    <a class="back" href="../index.html#ai">&larr; faiman.com / applied AI</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <article class="article">
+    <p class="eyebrow">Open source · MIT · Architecture note</p>
+    <h1>A local knowledge base agents can trust</h1>
+    <p class="dek">mainframe-mcp gives coding agents high-precision search over the markdown scattered across your repos: reranked, grounded, and measured, with nothing leaving your machine at query time.</p>
+    <div class="metachips">
+      <span class="chip on">100% local</span>
+      <span class="chip on">runs on your GPU</span>
+      <span class="chip on">eval-gated</span>
+      <span class="chip">Python · MCP · LanceDB · Tantivy</span>
+      <span class="chip"><a href="https://github.com/sushiHex/mainframe-mcp" style="color:inherit">github.com/sushiHex/mainframe-mcp&nbsp;&#8599;</a></span>
+    </div>
+
+    <div class="article-body">
+      <p class="lead">Retrieval that an agent acts on has to be right, not just plausible. mainframe-mcp treats that as an engineering problem with a number attached: every retrieval-affecting decision is settled by an in-repo eval harness with a regression gate, not by intuition. The architecture below is what that discipline produced.</p>
+
+      <h2>The architecture</h2>
+      <figure>
+        <div class="diagram"><img src="arch-mainframe-mcp.svg" alt="mainframe-mcp architecture: ingest builds a disposable dual index; a read-only query path retrieves hybrid and reranks; an ambient-memory loop consolidates immutable session captures into curated notes and re-indexes them." loading="lazy"></div>
+        <figcaption>Three loops on one machine. Ingest builds a disposable dual index; the read-only query path retrieves hybrid and reranks with the model's own yes/no logits; the memory loop consolidates immutable session captures into curated notes where newer facts win, then feeds them back into the index.</figcaption>
+      </figure>
+
+      <h2>Four decisions that carry it</h2>
+
+      <h3>Rerank with the model's own logits</h3>
+      <p>The reranker scores each candidate through a Qwen3-Reranker yes/no logit against a task instruction, the model-card method, not a bolted-on classification head. On the repo's eval that beat <span class="mono">bge-reranker-v2-m3</span> by <span class="win">+26% composite / +33% hit@1</span>. That swap wasn't a hunch; the harness made the call and it's reproducible from the repo.</p>
+
+      <h3>Files are the source of truth; the index is disposable</h3>
+      <p>Agents write immutable, secret-scrubbed session captures. A consolidation pass merges them into curated, git-tracked notes where <strong>newer facts supersede stale ones</strong>, with NLI-backed contradiction surfacing and anti-bloat guardrails. The vector index is derived from those files and can be thrown away and rebuilt; durability lives in git, not in a database.</p>
+
+      <h3>A read-only hot path, hardened for ops</h3>
+      <p>Search never mutates state. Ingestion does the writing: atomic manifest writes with crash recovery, index compaction and FTS refresh after each batch, poison-file-resilient syncs, path-traversal validation, and a layered secret-scrub denylist on every write path. The query an agent depends on can't corrupt the store it reads.</p>
+
+      <h3>Measured, not vibed</h3>
+      <p>An eval harness with a regression gate (<code>evaluate.py --min-score</code>), an experiment-log discipline, and a GPU-free test suite that runs in CI. The README's own graveyard (RAPTOR-in-index, RRF fusion, doc-prefix embedding, seq-cls reranker conversions) is a list of plausible ideas the harness killed. Retrieval leaderboards inverted against local measurement four separate times; the harness is the method, and you measure on your own corpus.</p>
+
+      <h2>Why it's here</h2>
+      <p>This is a small, honest example of the thing I do: design an AI system so its quality is <em>observable</em> and its failures turn into regression cases, then operate it. Same rigor, larger blast radius, is what I'd bring to an agent or evaluation platform. The <a href="claude-oracle.html">multi-tier research orchestrator</a> is the companion piece, the orchestration side of the same instinct.</p>
+
+      <p class="foot"><span class="kick">Ken Faiman</span> · Applied AI, agent &amp; evaluation systems · <a href="https://github.com/sushiHex/mainframe-mcp">source</a> · <a href="../index.html">faiman.com</a></p>
+    </div>
+  </article>
+</div>
+
+</body>
+</html>

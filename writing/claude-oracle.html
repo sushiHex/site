@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Oracle: a multi-tier research orchestrator | Ken Faiman</title>
+<meta name="description" content="Architecture note: how Claude Oracle tiers research by difficulty, fanning breadth-first search across parallel Haiku scouts, isolating Sonnet synthesis per chain, and returning one confidence-tagged briefing to your Opus session.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="writing.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="mark" href="../index.html">Ken Faiman <span>/ TA + AI</span></a>
+    <a class="back" href="../index.html#ai">&larr; faiman.com / applied AI</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <article class="article">
+    <p class="eyebrow">Open source · MIT · Architecture note</p>
+    <h1>Research at ten times the breadth, tiered by difficulty</h1>
+    <p class="dek">Claude Oracle fans a research question across many cheap Haiku scouts in parallel, has Sonnet organize their findings under enforced isolation, and returns a single confidence-tagged briefing to your Opus session.</p>
+    <div class="metachips">
+      <span class="chip on">~10x breadth</span>
+      <span class="chip on">Python-enforced isolation</span>
+      <span class="chip">Claude Code · Haiku / Sonnet / Opus</span>
+      <span class="chip"><a href="https://github.com/sushiHex/claude-oracle" style="color:inherit">github.com/sushiHex/claude-oracle&nbsp;&#8599;</a></span>
+    </div>
+
+    <div class="article-body">
+      <p class="lead">The trick is tiering the work by how hard it is. Breadth-first search is cheap and embarrassingly parallel, so it goes to Haiku. Synthesis needs judgment, so it goes to Sonnet. The final editorial call is yours, so it stays with Opus: your live session. One question becomes eighty scouts and comes back as one briefing.</p>
+
+      <h2>The architecture</h2>
+      <figure>
+        <div class="diagram"><img src="arch-claude-oracle.svg" alt="Claude Oracle architecture: an Opus architect decomposes a question, parallel Haiku scout chains gather breadth, Sonnet compressors organize each chain in isolation, and a confidence-tagged briefing returns to your session." loading="lazy"></div>
+        <figcaption>Your Opus session decomposes the question with full context, then fans out one to eight chains. Each chain runs ten Haiku scouts and a Sonnet compressor that sees only its own chain's firehose. The compressors return a single confidence-tagged briefing to you.</figcaption>
+      </figure>
+
+      <h2>Three decisions that carry it</h2>
+
+      <h3>Tier the work, don't flatten it</h3>
+      <p>Running everything on one model tier is either slow and expensive (all Opus) or shallow (all Haiku). Oracle matches each job to the cheapest tier that can do it well: 10 to 80 Haiku scouts for breadth, a Sonnet compressor per chain for judgment, your Opus session for the editorial synthesis. The result is roughly <span class="win">10x the research breadth at a fraction of Opus-only cost</span>.</p>
+
+      <h3>Isolation enforced in code, not in a prompt</h3>
+      <p>In multi-chain mode each Sonnet compressor sees <strong>only</strong> its own chain's scout reports; the orchestrator groups the data by chain in Python so no compressor is ever handed another chain's firehose. The isolation is structural, which is the difference between a guarantee and a polite request to the model.</p>
+
+      <h3>Resilient by design</h3>
+      <p>Distributed fan-out fails in boring ways, so the failure modes are handled explicitly: per-scout and per-compressor timeouts, a startup launch gate so parallel subprocesses never collide on shared state, a one-shot retry pass for failed scouts, an all-scouts-failed guard, and a raw-scout fallback so a failed compressor never discards its chain's work. Every finding is confidence-tagged (<span class="mono">HIGH / MEDIUM / LOW</span>) and dated, so provenance survives all the way to your briefing.</p>
+
+      <h2>Why it's here</h2>
+      <p>Orchestrating many models reliably is the same instinct as the <a href="mainframe-mcp.html">retrieval work</a> from the other direction: design the system so its behavior is predictable and its failures are contained, then operate it. That is the discipline I'd bring to an agent platform, tiering, isolation, and graceful degradation as first-class design, not afterthoughts.</p>
+
+      <p class="foot"><span class="kick">Ken Faiman</span> · Applied AI, agent &amp; evaluation systems · <a href="https://github.com/sushiHex/claude-oracle">source</a> · <a href="../index.html">faiman.com</a></p>
+    </div>
+  </article>
+</div>
+
+</body>
+</html>
